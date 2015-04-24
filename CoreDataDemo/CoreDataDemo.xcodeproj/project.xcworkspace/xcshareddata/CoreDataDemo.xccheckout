@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2FCCDDBB-880D-4A31-B281-820C3D41B4E8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>CoreDataDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>ECEDD5AEF880EEB453FC4E2F3617E827B7A5A935</key>
+		<string>https://github.com/iosDeveloper1184/CoreDataExample</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CoreDataDemo/CoreDataDemo.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>ECEDD5AEF880EEB453FC4E2F3617E827B7A5A935</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/iosDeveloper1184/CoreDataExample</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>ECEDD5AEF880EEB453FC4E2F3617E827B7A5A935</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>ECEDD5AEF880EEB453FC4E2F3617E827B7A5A935</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CoreDataExample</string>
+		</dict>
+	</array>
+</dict>
+</plist>
