@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Y7X-NG-9M6">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <scenes>
@@ -48,11 +49,10 @@
             </objects>
             <point key="canvasLocation" x="1509" y="193"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Person-->
         <scene sceneID="L0a-fX-Hsc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YdJ-mN-YXI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="pu1-ar-Rxu" sceneMemberID="viewController">
+                <viewController id="pu1-ar-Rxu" customClass="AddPerson" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BgF-Fi-feW"/>
                         <viewControllerLayoutGuide type="bottom" id="P0d-ty-eRa"/>
@@ -60,9 +60,56 @@
                     <view key="view" contentMode="scaleToFill" id="Kfj-wr-GpF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rwt-aD-5tq">
+                                <rect key="frame" x="220" y="145" width="160" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="IAZ-9A-H1g"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ngU-3p-uL9">
+                                <rect key="frame" x="220" y="208" width="160" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Age" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Slm-Ec-9tM">
+                                <rect key="frame" x="220" y="273" width="160" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Szf-9S-MMn">
+                                <rect key="frame" x="277" y="325" width="46" height="30"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitAction:" destination="pu1-ar-Rxu" eventType="touchUpInside" id="eM8-7M-Ikg"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ngU-3p-uL9" firstAttribute="trailing" secondItem="Slm-Ec-9tM" secondAttribute="trailing" id="0lf-3O-6no"/>
+                            <constraint firstItem="ngU-3p-uL9" firstAttribute="leading" secondItem="Slm-Ec-9tM" secondAttribute="leading" id="BMN-W6-jb1"/>
+                            <constraint firstItem="rwt-aD-5tq" firstAttribute="top" secondItem="BgF-Fi-feW" secondAttribute="bottom" constant="81" id="EuV-fk-1yB"/>
+                            <constraint firstItem="Szf-9S-MMn" firstAttribute="centerX" secondItem="Kfj-wr-GpF" secondAttribute="centerX" id="G9q-DG-Z9m"/>
+                            <constraint firstItem="ngU-3p-uL9" firstAttribute="top" secondItem="rwt-aD-5tq" secondAttribute="bottom" constant="33" id="O3i-j3-Naa"/>
+                            <constraint firstItem="Szf-9S-MMn" firstAttribute="top" secondItem="Slm-Ec-9tM" secondAttribute="bottom" constant="22" id="UCC-q9-450"/>
+                            <constraint firstItem="rwt-aD-5tq" firstAttribute="trailing" secondItem="ngU-3p-uL9" secondAttribute="trailing" id="eYj-Z0-a6S"/>
+                            <constraint firstItem="Slm-Ec-9tM" firstAttribute="centerX" secondItem="Szf-9S-MMn" secondAttribute="centerX" id="ipT-Fx-uGI"/>
+                            <constraint firstItem="ngU-3p-uL9" firstAttribute="leading" secondItem="rwt-aD-5tq" secondAttribute="leading" id="lte-9T-hms"/>
+                            <constraint firstItem="Slm-Ec-9tM" firstAttribute="top" secondItem="ngU-3p-uL9" secondAttribute="bottom" constant="35" id="vNw-ap-bCI"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="txtAge" destination="Slm-Ec-9tM" id="S3T-Da-AOW"/>
+                        <outlet property="txtfName" destination="rwt-aD-5tq" id="xqf-xb-tMS"/>
+                        <outlet property="txtlName" destination="ngU-3p-uL9" id="rXt-af-Jv5"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YdJ-mN-YXI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1509" y="958"/>
         </scene>

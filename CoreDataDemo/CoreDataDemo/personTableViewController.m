@@ -8,7 +8,7 @@
 
 #import "personTableViewController.h"
 #import "AppDelegate.h"
-#import "Person.h"
+#import "Employee.h"
 static NSString *PersonTableViewCell = @"PersonTableViewCell";
 
 @interface personTableViewController ()<NSFetchedResultsControllerDelegate>
@@ -27,7 +27,7 @@ static NSString *PersonTableViewCell = @"PersonTableViewCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Persons";
+    self.title = @"Employee";
     
     self.barButtonAddPerson =
     [[UIBarButtonItem alloc]
@@ -40,12 +40,12 @@ static NSString *PersonTableViewCell = @"PersonTableViewCell";
     [self.navigationItem setRightBarButtonItem:self.barButtonAddPerson
                                       animated:NO];
     
-    NSFetchRequest  *fetchReq = [[NSFetchRequest alloc]initWithEntityName:@"Person"];
+    NSFetchRequest  *fetchReq = [[NSFetchRequest alloc]initWithEntityName:@"Employee"];
     NSSortDescriptor *ageSort = [[NSSortDescriptor alloc]initWithKey:@"age" ascending:YES
                                  ];
-    NSSortDescriptor *firstNameSOrt =[[NSSortDescriptor alloc]initWithKey:@"fName" ascending:YES
-                                      ];
-    fetchReq.sortDescriptors =@[ageSort,firstNameSOrt];
+//    NSSortDescriptor *firstNameSOrt =[[NSSortDescriptor alloc]initWithKey:@"fName" ascending:YES
+//                                      ];
+    fetchReq.sortDescriptors =@[ageSort];
     self.frc = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchReq managedObjectContext:[self manageObjectContext] sectionNameKeyPath:nil cacheName:nil];
     self.frc.delegate =self;
     NSError *fetchingError =nil;
@@ -69,7 +69,7 @@ static NSString *PersonTableViewCell = @"PersonTableViewCell";
 }
 
 -(void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView beginUpdates];
+   // [self.tableView beginUpdates];
 }
 
 
@@ -77,10 +77,10 @@ static NSString *PersonTableViewCell = @"PersonTableViewCell";
 
 -(void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
     if(type == NSFetchedResultsChangeDelete){
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath  ] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
     else if(type == NSFetchedResultsChangeInsert)   {
-        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         
     }
 }
@@ -92,7 +92,7 @@ static NSString *PersonTableViewCell = @"PersonTableViewCell";
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
     
     
@@ -110,9 +110,9 @@ static NSString *PersonTableViewCell = @"PersonTableViewCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PersonTableViewCell forIndexPath:indexPath];
-    Person *person = [self.frc objectAtIndexPath:indexPath];
+    Employee *person = [self.frc objectAtIndexPath:indexPath];
     
-    cell.textLabel.text =[person.fName stringByAppendingString:[NSString stringWithFormat:@"%@", person.lName]];
+    cell.textLabel.text =[person.firstName stringByAppendingString:[NSString stringWithFormat:@"%@", person.lastName]];
     
     
     cell.detailTextLabel.text =[NSString stringWithFormat:@"%@",person.age];
@@ -122,9 +122,9 @@ static NSString *PersonTableViewCell = @"PersonTableViewCell";
     return cell;
 }
 
-//-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-//   // return UITableViewCellEditingStyleDelete;
-//}
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+   return UITableViewCellEditingStyleDelete;
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -142,7 +142,7 @@ static NSString *PersonTableViewCell = @"PersonTableViewCell";
 //    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
 //        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
 //    }
-    Person *person = [self.frc objectAtIndexPath:indexPath];
+    Employee *person = [self.frc objectAtIndexPath:indexPath];
     [[self manageObjectContext] deleteObject:person];
     if([person isDeleted]){
         NSError *error=nil;
@@ -181,26 +181,32 @@ static NSString *PersonTableViewCell = @"PersonTableViewCell";
 */
 - (void) addNewPerson:(id)paramSender{
     
-   // [self performSegueWithIdentifier:@"addPerson" sender:self];
-    [self insertNewDataWithfirstName:@"Ashvini" lastName:@"Gulve" age:24];
-    [self insertNewDataWithfirstName:@"Priyank" lastName:@"Gulve" age:27];
-    NSError *errorFetch = nil;
-    if ([self.frc performFetch:&errorFetch]) {
-        NSLog(@"Success");
-    }
-    else {
-        NSLog(@"Error");
-    }
-    [self.tableView reloadData];
+    [self performSegueWithIdentifier:@"addPerson" sender:self];
+//    [self insertNewDataWithfirstName:@"Ashvini" lastName:@"Gulve" age:24];
+//    [self insertNewDataWithfirstName:@"Priyank" lastName:@"Gulve" age:27];
+//    NSError *errorFetch = nil;
+//    if ([self.frc performFetch:&errorFetch]) {
+//        NSLog(@"Success");
+//    }
+//    else {
+//        NSLog(@"Error");
+//    }
+//    [self.tableView reloadData];
 }
 
 -(void)insertNewDataWithfirstName:(NSString *)fName lastName:(NSString *)lName age:(int )age
 {
-    Person *person = [NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:[self manageObjectContext]];
-    person.fName = fName;
-    person.lName = lName;
-    person.age=[NSNumber numberWithInt:age];
-    
+//    Person *person = [NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:[self manageObjectContext]];
+//    person.fName = fName;
+//    person.lName = lName;
+//    person.age=[NSNumber numberWithInt:age];
+//    NSError *error;
+//    if([[self manageObjectContext]save:&error]){
+//        NSLog(@"Succefully inserted");
+//    }
+//    else {
+//        NSLog(@"%@",error);
+//    }
 }
                       
                       

@@ -8,8 +8,13 @@
 
 #import "AppDelegate.h"
 #import "Person.h"
+#import "Manager.h"
+#import "Employee.h"
 @interface AppDelegate ()
-
+{
+    Manager  *manager;
+    Employee *employee;
+}
 @end
 
 @implementation AppDelegate
@@ -20,49 +25,57 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    NSString *fname =@"Ashvini ";
-    NSString *lname = @"Gulve";
-    int age =24;
+    NSString *fname =@"Sanjay ";
+    NSString *lname = @"Shukla";
+    int age =35;
     
-//    [self createNewUserWithParamFirstName:fname LastName:lname Age:age];
-//    [self createNewUserWithParamFirstName:@"" LastName:@"" Age:0];
-//    [self createNewUserWithParamFirstName:@"John" LastName:@"Louis" Age:23];
-    NSFetchRequest *fetchReq = [[NSFetchRequest alloc]initWithEntityName:@"Person"];
-    NSSortDescriptor *agesortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"age" ascending:YES];
-    NSSortDescriptor *fNamesortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"fName" ascending:YES];
-    fetchReq.sortDescriptors = @[fNamesortDescriptor,agesortDescriptor];
     
-    NSError *FetchError;
-    NSArray *persons  = [self.managedObjectContext executeFetchRequest:fetchReq error:&FetchError];
-    if (persons.count > 0 )
-    {
-        Person *person = [persons firstObject];
-         
-//        [self.managedObjectContext deleteObject:person];
-//      //  NSError *error = nil;
-//        if ([person isDeleted])
-//        {
-//            NSLog(@"Deleted succesfully");
-//            NSError * errorForSaving = nil;
-//            if ([self.managedObjectContext save:&errorForSaving])
-//            {
-//                NSLog(@"Data saved succesfully");
-//            }
-//            else
-//            {
-//                NSLog(@"%@",errorForSaving);
-//            }
-//        }
-//        else{
-//            NSLog( @"Not deleted");
-//        }
-        for(Person *data in persons){
-            NSLog(@"First Name = %@", data.fName);
-            NSLog(@"Last Name = %@", data.lName);
-            NSLog(@"Age = %lu", (unsigned long)[data.age unsignedIntegerValue]);
-            
-        }
-    }
+   NSArray *managerData = [manager.employees allObjects];
+    NSLog(@"%@",managerData);
+    //employee.manager =manager;
+    
+    [self createNewManagerWithParamFirstName:fname LastName:lname Age:age];
+    
+    [self createNewEmployeesWithParamFirstName:@"rajesh" LastName:@"Sinha" Age:28];
+     [self createNewEmployeesWithParamFirstName:@"akhilesh " LastName:@"Shah" Age:25];
+     [self createNewEmployeesWithParamFirstName:@"Nikita" LastName:@"Rathod" Age:26];
+////    NSFetchRequest *fetchReq = [[NSFetchRequest alloc]initWithEntityName:@"Person"];
+////    NSSortDescriptor *agesortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"age" ascending:YES];
+////    NSSortDescriptor *fNamesortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"fName" ascending:YES];
+////    fetchReq.sortDescriptors = @[fNamesortDescriptor,agesortDescriptor];
+////    
+////    NSError *FetchError;
+////    NSArray *persons  = [self.managedObjectContext executeFetchRequest:fetchReq error:&FetchError];
+////    if (persons.count > 0 )
+////    {
+////        Person *person = [persons firstObject];
+////        
+////         
+//////        [self.managedObjectContext deleteObject:person];
+//////      //  NSError *error = nil;
+//////        if ([person isDeleted])
+//////        {
+//////            NSLog(@"Deleted succesfully");
+//////            NSError * errorForSaving = nil;
+//////            if ([self.managedObjectContext save:&errorForSaving])
+//////            {
+//////                NSLog(@"Data saved succesfully");
+//////            }
+//////            else
+//////            {
+//////                NSLog(@"%@",errorForSaving);
+//////            }
+//////        }
+//////        else{
+//////            NSLog( @"Not deleted");
+//////        }
+////        for(Person *data in persons){
+////            NSLog(@"First Name = %@", data.fName);
+////            NSLog(@"Last Name = %@", data.lName);
+////            NSLog(@"Age = %lu", (unsigned long)[data.age unsignedIntegerValue]);
+////            
+////        }
+//    }
     
                                 
     
@@ -89,11 +102,88 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
+- (void)applicationWillTerminate:(UIApplication *)application
+{
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
    // [self saveContext];
 }
+
+-(BOOL)createNewManagerWithParamFirstName:(NSString *)firstname LastName:(NSString *)lastname Age:(int)age
+{
+    BOOL result = NO;
+    if (firstname.length == 0 || lastname.length == 0 || age == 0) {
+        NSLog(@"Entity should not be blank");
+        return  result ;
+    }
+    else
+    {
+        
+      manager   = [ NSEntityDescription insertNewObjectForEntityForName:@"Manager" inManagedObjectContext:self.managedObjectContext];
+        manager.firstName = firstname;
+        manager.lastName =lastname  ;
+        manager.age = [NSNumber numberWithInt:age
+                       ];
+        NSError *savingError;
+        if (manager != nil)
+        {
+            if([self.managedObjectContext save:&savingError])
+            {
+                NSLog(@"Data Save Successfully");
+                
+            }
+            else {
+                NSLog(@"%@",savingError);
+            }
+            result = YES;
+        }
+        else {
+            NSLog(@"Entity is nil");
+        }
+    }
+    return result;
+}
+
+
+-(BOOL)createNewEmployeesWithParamFirstName:(NSString *)firstname LastName:(NSString *)lastname Age:(int)age
+{
+    BOOL result = NO;
+    if (firstname.length == 0 || lastname.length == 0 || age == 0) {
+        NSLog(@"Entity should not be blank");
+        return  result ;
+    }
+    else
+    {
+        
+   employee      = [ NSEntityDescription insertNewObjectForEntityForName:@"Employee" inManagedObjectContext:self.managedObjectContext];
+        employee.firstName = firstname;
+        employee.lastName =lastname  ;
+        employee.age = [NSNumber numberWithInt:age
+                       ];
+        [manager addEmployeesObject:employee];
+        NSArray *array = [manager.employees allObjects];
+        NSLog(@"Final Data %@",array);
+        NSError *savingError;
+        if (employee != nil)
+        {
+            if([self.managedObjectContext save:&savingError])
+            {
+                NSLog(@"Data Save Successfully");
+                
+            }
+            else {
+                NSLog(@"%@",savingError);
+            }
+            result = YES;
+        }
+        else {
+            NSLog(@"Entity is nil");
+        }
+    }
+    return result;
+}
+
+
 
 #pragma mark - Core Data stack
 
@@ -178,38 +268,6 @@
 
 
 
--(BOOL)createNewUserWithParamFirstName:(NSString *)firstname LastName:(NSString *)lastname Age:(int)age{
-    BOOL result = NO;
-    if (firstname.length == 0 || lastname.length == 0 || age == 0) {
-        NSLog(@"Entity should not be blank");
-        return  result ;
-    }
-    else
-    {
-    
-    Person *newPerson = [ NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:self.managedObjectContext];
-    newPerson.fName = firstname;
-    newPerson.lName = lastname;
-    newPerson.age = [NSNumber numberWithInt:age];
-    NSError *savingError;
-    if (newPerson != nil)
-    {
-        if([self.managedObjectContext save:&savingError])
-        {
-            NSLog(@"Data Save Successfully");
-            
-        }
-        else {
-            NSLog(@"%@",savingError);
-        }
-        result = YES;
-    }
-    else {
-        NSLog(@"Entity is nil");
-    }
-    }
-    return result;
-}
 
 
 

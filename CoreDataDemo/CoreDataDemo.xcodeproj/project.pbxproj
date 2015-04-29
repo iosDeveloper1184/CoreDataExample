@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		124B10861AEE4ED300E35ED4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 124B10851AEE4ED300E35ED4 /* CoreData.framework */; };
+		124B10891AEE50CC00E35ED4 /* Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 124B10881AEE50CC00E35ED4 /* Manager.m */; };
+		124B108C1AEE50CD00E35ED4 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = 124B108B1AEE50CD00E35ED4 /* Employee.m */; };
 		12821C661AE8FF00007B489A /* personTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12821C651AE8FF00007B489A /* personTableViewController.m */; };
+		129F239E1AEA4E3700E157FE /* AddPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 129F239D1AEA4E3700E157FE /* AddPerson.m */; };
 		12A0B3501AE77C9C005E0843 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 12A0B34F1AE77C9C005E0843 /* main.m */; };
 		12A0B3531AE77C9C005E0843 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 12A0B3521AE77C9C005E0843 /* AppDelegate.m */; };
 		12A0B3561AE77C9C005E0843 /* CoreDataDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 12A0B3541AE77C9C005E0843 /* CoreDataDemo.xcdatamodeld */; };
@@ -30,8 +34,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		124B10851AEE4ED300E35ED4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		124B10871AEE50CC00E35ED4 /* Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Manager.h; sourceTree = "<group>"; };
+		124B10881AEE50CC00E35ED4 /* Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Manager.m; sourceTree = "<group>"; };
+		124B108A1AEE50CD00E35ED4 /* Employee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee.h; sourceTree = "<group>"; };
+		124B108B1AEE50CD00E35ED4 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
 		12821C641AE8FF00007B489A /* personTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = personTableViewController.h; sourceTree = "<group>"; };
 		12821C651AE8FF00007B489A /* personTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = personTableViewController.m; sourceTree = "<group>"; };
+		129F239C1AEA4E3700E157FE /* AddPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPerson.h; sourceTree = "<group>"; };
+		129F239D1AEA4E3700E157FE /* AddPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPerson.m; sourceTree = "<group>"; };
 		12A0B34A1AE77C9C005E0843 /* CoreDataDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A0B34E1AE77C9C005E0843 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12A0B34F1AE77C9C005E0843 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -55,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				124B10861AEE4ED300E35ED4 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +83,7 @@
 		12A0B3411AE77C9C005E0843 = {
 			isa = PBXGroup;
 			children = (
+				124B10851AEE4ED300E35ED4 /* CoreData.framework */,
 				12A0B34C1AE77C9C005E0843 /* CoreDataDemo */,
 				12A0B3691AE77C9D005E0843 /* CoreDataDemoTests */,
 				12A0B34B1AE77C9C005E0843 /* Products */,
@@ -97,11 +110,17 @@
 				12A0B35D1AE77C9C005E0843 /* Images.xcassets */,
 				12A0B35F1AE77C9C005E0843 /* LaunchScreen.xib */,
 				12A0B3541AE77C9C005E0843 /* CoreDataDemo.xcdatamodeld */,
+				124B108A1AEE50CD00E35ED4 /* Employee.h */,
+				124B108B1AEE50CD00E35ED4 /* Employee.m */,
+				124B10871AEE50CC00E35ED4 /* Manager.h */,
+				124B10881AEE50CC00E35ED4 /* Manager.m */,
 				12A0B3761AE78304005E0843 /* Person.h */,
 				12A0B3771AE78304005E0843 /* Person.m */,
 				12A0B34D1AE77C9C005E0843 /* Supporting Files */,
 				12821C641AE8FF00007B489A /* personTableViewController.h */,
 				12821C651AE8FF00007B489A /* personTableViewController.m */,
+				129F239C1AEA4E3700E157FE /* AddPerson.h */,
+				129F239D1AEA4E3700E157FE /* AddPerson.m */,
 			);
 			path = CoreDataDemo;
 			sourceTree = "<group>";
@@ -238,6 +257,9 @@
 				12A0B3591AE77C9C005E0843 /* ViewController.m in Sources */,
 				12821C661AE8FF00007B489A /* personTableViewController.m in Sources */,
 				12A0B3501AE77C9C005E0843 /* main.m in Sources */,
+				124B108C1AEE50CD00E35ED4 /* Employee.m in Sources */,
+				129F239E1AEA4E3700E157FE /* AddPerson.m in Sources */,
+				124B10891AEE50CC00E35ED4 /* Manager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +337,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -353,7 +375,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -366,8 +388,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CoreDataDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -376,8 +400,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CoreDataDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
